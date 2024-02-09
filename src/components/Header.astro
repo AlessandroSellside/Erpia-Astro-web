@@ -1,6 +1,25 @@
 ---
-
+import logo from '../../public/logo_erpia.webp';
+import Info from './Icons/Info.astro'
+import Subir from './Icons/Subir.astro'
+import { Image } from 'astro:assets';
 ---
-<header class="w-full bg-slate-300 h-14">
+<header id="header-nav" class="fixed flex top-0 right-0 left-0 w-full px-6 py-4 z-50 gap-10">
+    <picture class="animate-fade-down">
+        <Image src={logo} alt="Logo Erpia" class='w-12 min-w-12'/>
+    </picture>
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-16 text-lg  text-white font-medium tracking-wider animate-fade-down">
+        <nav class="fixed w-full h-dvh inset-0 bg-[#151a36]/90 text-2xl flex flex-col items-center justify-center gap-8 -translate-y-full transition-transform duration-300 target:translate-y-0 md:static md:h-[initial] md:bg-[initial] md:text-xl md:flex-row md:translate-y-[initial] text-pretty">
+        <a class="text_glowing" href="/">Subir archivos</a>
+    
+        <a class="text_glowing" href="/Info">Informacion</a>
+        </nav>
+    </div>
 
+    <span class="fixed w-full h-16 inset-0 text-2xl flex items-center justify-center gap-8 -translate-y-0 transition-transform duration-300 target:translate-y-full md:hidden md:h-[final] md:bg-[final] md:text-xl md:flex-row md:translate-y-[final] ">
+        <Info/>
+
+        <Subir/>
+
+    </span>
 </header>

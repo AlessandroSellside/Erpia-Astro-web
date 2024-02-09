@@ -1,6 +1,6 @@
 ---
 import Header from '../components/Header.astro';
-
+import {ViewTransitions} from 'astro:transitions';
 interface Props {
 	description: string;
 	title: string;
@@ -15,15 +15,18 @@ const { title, description } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
+		<link rel="icon" type="image" href="/logo_erpia.webp" />
 		<title>{title}</title>
+    <slot name="preload"/>
+		<ViewTransitions/>
 	</head>
-	<body>
+	<body class="absolute inset-0 -z-10 max-h-fit min-h-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#001_40%,#63e_100%)]">
 		<Header/>
-		<slot />
+		<slot/>
+		<ViewTransitions/>
 	</body>
 </html>
+
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;
@@ -36,6 +39,64 @@ const { title, description } = Astro.props;
 			white 60%
 		);
 	}
+	#header-nav {
+    animation: blur linear both;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+  }
+
+  @keyframes blur {
+    to {
+      box-shadow:
+        0px 5px 50px -5px rgba(0, 0, 0, 0.1),
+        0px 0px 0 1px rgba(0, 0, 0, 0.3);
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(14px);
+    }
+  }
+
+  .text_glowing {
+    transition: text-shadow 0.3s ease;
+  }
+
+  .text_glowing:hover {
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 40px #fff,
+      0 0 80px #fff,
+      0 0 100px #fff;
+  }
+  .file-upload-content {
+  display: none;
+  text-align: center;
+}
+
+.file-upload-input {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.image-upload-wrap {
+  position: relative;
+  width: 600px;
+  height: 300px;
+  border: 2px solid #d0d7de;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.image-upload-wrap:hover {
+  background-color: transparent;
+  border: 2px dashed #d0d7de;
+}
+
 	html {
 		font-family: system-ui, sans-serif;
 		background: #13151a;

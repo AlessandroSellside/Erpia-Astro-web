@@ -1,19 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-import SubirArchivo from '../components/SubirArchivo.astro';
-import BotonesAccion from '../components/BotonesAccion.tsx';
+import Bento from '../components/Bento.astro';
 ---
-
 <Layout title="ERP.IA Vision" description="¡Automatiza el procesado de archivos a tu conveniencia! con nuestra tecnologia basada en IA, ¡resumenes, generacion de archivos y mucho más!">
 	
 	<main>
-		<BotonesAccion client:load/>
-		<SubirArchivo/>
+		<Bento/>
 	</main>
 	
 </Layout>
-
-<style>
-
-</style>
